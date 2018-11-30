@@ -9,6 +9,11 @@
 
 define('LARAVEL_START', microtime(true));
 
+function route($name, $parameters = [], $absolute = false)
+{
+    return app('url')->route($name, $parameters, $absolute);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
