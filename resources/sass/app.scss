@@ -9,7 +9,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 @media screen and (max-width: 720px) {
-  input.form-control, select.form-control {
+  input.form-control, select.form-control, textarea.form-control {
     font-size: 16px;
   }
 }
