@@ -10,6 +10,7 @@
             <hr>
             <div>
                 <h2>{{ task.name }}</h2>
+                <h4 class="text-success">{{ task.rate }}</h4>
                 <div>
                     <p>{{ task.description }}</p>
                 </div>
@@ -23,17 +24,20 @@
         name: "task-view-page",
         computed: {
             task() {
-                return this.$store.getters.getTask(this.$route.params.project_id,this.$route.params.task_id);
+                return this.$store.getters.getTask(parseInt(this.$route.params.project_id),parseInt(this.$route.params.task_id));
             },
             back_url() {
                 return {
                     name: 'project',
                     params: {
-                        project_id: this.task.project_id,
+                        project_id: this.$route.params.project_id,
                         filter_status: this.$store.getters.defaultFilterStatusId,
                     }
                 };
-            }
+            },
+            loading() {
+                return this.$store.getters.getIsLoading;
+            },
         },
     }
 </script>
