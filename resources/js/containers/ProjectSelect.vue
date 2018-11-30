@@ -41,7 +41,7 @@
 </script>
 
 <style scoped>
-    @media screen and (max-width: 720px){
+    @media screen and (min-width: 720px){
         select.form-control {
             font-size: 0.8rem;
         }
