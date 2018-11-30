@@ -1,5 +1,5 @@
 <template>
-    <select v-model="_value" class="form-control" name="project_id" style="font-size: 0.8rem;" @change="handleChange">
+    <select v-model="_value" class="form-control" name="project_id" @change="handleChange">
         <option value="">Все проекты</option>
         <option v-for="project in projects" :value="project.id">{{ project.name }}</option>
     </select>
@@ -41,5 +41,10 @@
 </script>
 
 <style scoped>
+    @media screen and (max-width: 720px){
+        select.form-control {
+            font-size: 0.8rem;
+        }
+    }
 
 </style>
