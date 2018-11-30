@@ -23,7 +23,6 @@ Vue.use(VueRouter);
 //Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('input-button', require('./components/InputButton'));
 Vue.component('task-list', require('./containers/TaskList'));
-Vue.component('task-view', require('./containers/TaskView'));
 Vue.component('project-select', require('./containers/ProjectSelect'));
 Vue.component('project-new-form', require('./containers/ProjectNewForm'));
 

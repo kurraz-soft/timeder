@@ -15,7 +15,7 @@
                 <th style="width: 100px"></th>
             </tr>
             <tr v-for="task in tasks">
-                <td>{{ task.name}}</td>
+                <td><router-link :to="{name: 'project_task_view', params: {project_id: task.project_id, task_id: task.id}}">{{ task.name}}</router-link></td>
                 <td class="text-success">{{ task.rate }}</td>
                 <td>
                     <select :value="task.status" :class="statusClass(task.status)" @change="(e) => handleStatusChange(e, task)">
