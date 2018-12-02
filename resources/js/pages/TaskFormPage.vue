@@ -37,13 +37,17 @@
                     <textarea rows="8" class="form-control" name="description" placeholder="Описание задачи" v-model="task.description"></textarea>
                 </div>
                 <div class="row">
-                    <div class="col" v-for="file in task.files">
-                        <a target="_blank" :href="file.path">{{ file.orig_name }}</a>
-                        <button @click="(e) => handleDeleteFile(e, file.id)" class="btn"><i class="fas fa-trash-alt"></i></button>
+                    <div class="col-6 col-sm-3 mb-3" v-for="file in task.files">
+                        <div class="card">
+                            <div class="card-block d-flex justify-content-between align-items-center">
+                                <a class="col-9 file-lnk" target="_blank" :href="file.path" :title="file.orig_name">{{ file.orig_name }}</a>
+                                <button title="Delete file" class="btn" @click="(e) => handleDeleteFile(e, file.id)"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="file" multiple name="files"/>
+                    <input type="file" multiple name="attachments[]"/>
                 </div>
                 <div class="row">
                     <div class="form-group col-12 col-sm-6">
@@ -133,5 +137,14 @@
 </script>
 
 <style scoped>
-
+    .card {
+        white-space: nowrap;
+    }
+    .file-lnk {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .card .btn {
+        width: 50px;
+    }
 </style>

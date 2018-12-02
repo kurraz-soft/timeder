@@ -66,13 +66,16 @@ class TasksController extends Controller
 
         if(!$task) abort(500);
 
-        $files = $request->files;
-        foreach ($files as $file)
+        $files = $request->file('attachments');
+        if($files)
         {
-            /**
-             * @var \Symfony\Component\HttpFoundation\File\UploadedFile $file
-             */
-            $repoFile->upload($file, $task);
+            foreach ($files as $file)
+            {
+                /**
+                 * @var \Symfony\Component\HttpFoundation\File\UploadedFile $file
+                 */
+                $repoFile->upload($file, $task);
+            }
         }
 
         return response('ok');
