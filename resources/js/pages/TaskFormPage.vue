@@ -41,9 +41,12 @@
                         <div class="card">
                             <div class="card-block d-flex justify-content-between align-items-center">
                                 <a class="col-9 file-lnk" target="_blank" :href="file.path" :title="file.orig_name">{{ file.orig_name }}</a>
-                                <button title="Delete file" class="btn" @click="(e) => handleDeleteFile(e, file.id)"><i class="fas fa-trash-alt"></i></button>
+                                <button type="button" title="Delete file" class="btn" @click="(e) => handleDeleteFile(e, file.id)"><i class="fas fa-trash-alt"></i></button>
                             </div>
                         </div>
+                    </div>
+                    <div class="col" v-if="loadingFiles">
+                        <div style="margin-top: 8px"><i class="fas fa-sync-alt spinner"></i></div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -75,6 +78,11 @@
         name: "task-form-page",
         created() {
             this.clearData();
+        },
+        data() {
+            return {
+                loadingFiles: false,
+            };
         },
         computed: {
             users() {
@@ -124,10 +132,11 @@
             clearData() {
                 this.$store.commit('clearTaskFormData', this.$route.params.project_id);
             },
-            handleDeleteFile(e, id) {
-
-                if(confirm('Are you sure?'))
-                    this.$store.dispatch('deleteFile', id);
+            async handleDeleteFile(e, id) {
+                if(!confirm('Are you sure?')) return;
+                this.loadingFiles = true;
+                await this.$store.dispatch('deleteFile', id);
+                this.loadingFiles = false;
             }
         },
         watch: {
@@ -146,5 +155,14 @@
     }
     .card .btn {
         width: 50px;
+    }
+
+    @keyframes spin {
+        from {transform:rotate(0deg);}
+        to {transform:rotate(360deg);}
+    }
+
+    .spinner {
+        animation: spin infinite 4000ms linear;
     }
 </style>

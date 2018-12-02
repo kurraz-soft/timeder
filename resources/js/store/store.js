@@ -118,10 +118,8 @@ export default new Vuex.Store({
         },
 
         async deleteFile(context, id) {
-            context.commit('incLoadingCnt');
             await apiDeleteFile(id);
-            context.commit('decLoadingCnt');
-            context.dispatch('loadProjectList');
+            context.commit('loadProjects', await apiProjectList());
         }
     },
     mutations: {
