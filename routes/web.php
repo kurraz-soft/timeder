@@ -19,4 +19,7 @@ Route::resource('projects', 'ProjectsController')->middleware('auth');
 Route::resource('tasks', 'TasksController')->middleware('auth');
 Route::get('/users', 'UsersController@index')->middleware('auth')->name('users.index');
 
+Route::get('/file/{name}','FileController@index')->middleware('auth')->name('file');
+Route::delete('/file/{id}','FileController@destroy')->middleware('auth')->name('file.destroy');
+
 Auth::routes();

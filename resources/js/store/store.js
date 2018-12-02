@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import {
+    apiDeleteFile,
     apiDeleteTask, apiLoadTask, apiProjectDetail, apiProjectList, apiProjectNew, apiTaskNew,
     apiUserList
 } from '../api/api';
@@ -114,6 +115,13 @@ export default new Vuex.Store({
             const task = payload.task;
             task.status = payload.status;
             await context.dispatch('newTask', task);
+        },
+
+        async deleteFile(context, id) {
+            context.commit('incLoadingCnt');
+            await apiDeleteFile(id);
+            context.commit('decLoadingCnt');
+            context.dispatch('loadProjectList');
         }
     },
     mutations: {

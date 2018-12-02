@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\FileRepository;
 use App\Repositories\TaskRepository;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,7 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, TaskRepository $repo)
+    public function store(Request $request, TaskRepository $repo, FileRepository $repoFile)
     {
 
         $this->validate($request, [
@@ -52,7 +53,7 @@ class TasksController extends Controller
             'rate' => 'string|nullable',
         ]);
 
-        $repo->save(
+        $task = $repo->save(
             $request->post('project_id'),
             $request->post('name'),
             $request->post('description'),
@@ -62,6 +63,17 @@ class TasksController extends Controller
             $request->post('status'),
             $request->post('rate')
         );
+
+        if(!$task) abort(500);
+
+        $files = $request->files;
+        foreach ($files as $file)
+        {
+            /**
+             * @var \Symfony\Component\HttpFoundation\File\UploadedFile $file
+             */
+            $repoFile->upload($file, $task);
+        }
 
         return response('ok');
     }

@@ -8,7 +8,7 @@
                 <router-link :to="back_url" class="btn btn-outline-secondary px-4" role="button"><i class="fas fa-long-arrow-alt-left"></i></router-link>
             </div>
             <hr>
-            <form class="mt-2" @submit="handleSubmit">
+            <form class="mt-2" @submit="handleSubmit" enctype="multipart/form-data">
                 <input type="hidden" name="id" :value="task.id" />
                 <div class="row">
                     <div class="form-group col-12 col-sm-6">
@@ -35,6 +35,15 @@
                 <div class="form-group">
                     <label>Описание</label>
                     <textarea rows="8" class="form-control" name="description" placeholder="Описание задачи" v-model="task.description"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col" v-for="file in task.files">
+                        <a target="_blank" :href="file.path">{{ file.orig_name }}</a>
+                        <button @click="(e) => handleDeleteFile(e, file.id)" class="btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="file" multiple name="files"/>
                 </div>
                 <div class="row">
                     <div class="form-group col-12 col-sm-6">
@@ -111,6 +120,11 @@
             clearData() {
                 this.$store.commit('clearTaskFormData', this.$route.params.project_id);
             },
+            handleDeleteFile(e, id) {
+
+                if(confirm('Are you sure?'))
+                    this.$store.dispatch('deleteFile', id);
+            }
         },
         watch: {
             '$route': 'clearData',

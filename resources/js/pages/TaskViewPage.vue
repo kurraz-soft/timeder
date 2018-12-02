@@ -14,6 +14,14 @@
                 <div>
                     <p>{{ task.description }}</p>
                 </div>
+                <div v-if="task.files">
+                    <strong>Attachments</strong>
+                    <ul>
+                        <li v-for="file in task.files">
+                            <a :href="file.path">{{ file.orig_name }}</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

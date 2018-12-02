@@ -23,7 +23,7 @@ class ProjectRepository
 
     public function getAll()
     {
-        $projects = Project::with('tasks')->get();
+        $projects = Project::with('tasks.files')->get();
 
         return $projects;
     }

@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $rate
  *
  * @property string $status_label
+ * @property File[] $files
  */
 class Task extends Model
 {
@@ -32,6 +33,11 @@ class Task extends Model
     public function project()
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function files()
+    {
+        return $this->morphMany(File::class, 'ext');
     }
 
     static public function statusLabels()

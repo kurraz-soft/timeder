@@ -27,3 +27,7 @@ export async function apiLoadTask(id) {
 export async function apiDeleteTask(id) {
     return (await axios.delete(API_URLS.tasks.delete.replace('#id#', id))).data;
 }
+
+export async function apiDeleteFile(id) {
+    return (await axios.delete(API_URLS.files.delete.replace('#id#', id))).data;
+}

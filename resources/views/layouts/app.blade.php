@@ -27,6 +27,9 @@
             },
             users: {
                 list: '{{ route('users.index') }}',
+            },
+            files: {
+                delete: '{{ route('file.destroy', '#id#') }}',
             }
         };
         var USER = @json(Auth::user());
