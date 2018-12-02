@@ -92,9 +92,16 @@
 </script>
 
 <style scoped>
+
+    @keyframes spin {
+        from {transform:rotate(0deg);}
+        to {transform:rotate(360deg);}
+    }
+
     .spinner {
         position: absolute;
         right: 3px;
         top: -33px;
+        animation: spin infinite 4000ms;
     }
 </style>
