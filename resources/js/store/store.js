@@ -148,7 +148,7 @@ export default new Vuex.Store({
                 project_id: project_id,
                 doer_id: USER.id,
                 owner_id: USER.id,
-                status: this.getters.defaultFilterStatusId,
+                status: TASK_STATUSES[0].id,
             };
         },
     },
