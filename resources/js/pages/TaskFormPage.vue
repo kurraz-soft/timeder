@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <label>Заголовок</label>
-                    <input required name="name" type="text" class="form-control" placeholder="Заголовок задачи" v-model="task.name">
+                    <input autocomplete="off" required name="name" type="text" class="form-control" placeholder="Заголовок задачи" v-model="task.name">
                 </div>
                 <div class="form-group">
                     <label>Рейт</label>
