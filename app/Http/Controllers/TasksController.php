@@ -44,7 +44,7 @@ class TasksController extends Controller
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
-            'description' => 'string',
+            'description' => 'string|nullable',
             'owner_id' => 'required',
             'doer_id' => 'required',
             'project_id' => 'required',
