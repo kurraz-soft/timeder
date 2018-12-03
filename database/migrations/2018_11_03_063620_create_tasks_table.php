@@ -17,11 +17,11 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->integer('project_id',false, true);
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('status');
             $table->integer('doer_id');
             $table->integer('owner_id');
-            $table->string('rate');
+            $table->string('rate')->nullable();
             $table->timestamps();
         });
     }
