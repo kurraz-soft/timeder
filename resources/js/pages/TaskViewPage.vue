@@ -14,7 +14,7 @@
                 <div>
                     <p>{{ task.description }}</p>
                 </div>
-                <div v-if="task.files">
+                <div v-if="task.files.count">
                     <strong>Attachments</strong>
                     <ul>
                         <li v-for="file in task.files">
