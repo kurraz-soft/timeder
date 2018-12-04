@@ -27,6 +27,7 @@ class Task extends Model
     const STATUS_WAIT_FOR_PAY = 3;
     const STATUS_CLOSED = 4;
     const STATUS_ON_HOLD = 5;
+    const STATUS_IN_PROCESS = 6;
 
     public $appends = ['status_label'];
 
@@ -51,6 +52,10 @@ class Task extends Model
             self::STATUS_OPEN => [
                 'id' => self::STATUS_OPEN,
                 'name' => 'Открыта',
+            ],
+            self::STATUS_IN_PROCESS => [
+                'id' => self::STATUS_IN_PROCESS,
+                'name' => 'В работе',
             ],
             self::STATUS_DONE => [
                 'id' => self::STATUS_DONE,
@@ -78,6 +83,11 @@ class Task extends Model
             [
                 'id' => self::STATUS_OPEN,
                 'name' => 'Открыта',
+                'class' => 'text-danger',
+            ],
+            [
+                'id' => self::STATUS_IN_PROCESS,
+                'name' => 'В работе',
                 'class' => 'text-danger',
             ],
             [
