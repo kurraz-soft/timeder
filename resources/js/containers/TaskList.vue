@@ -5,8 +5,8 @@
         </div>
         <div>
             <div class="task-list-item row flex-nowrap mx-0 align-items-center" style="overflow: hidden">
-                <div class="col-4 col-sm-4"><strong>Task</strong></div>
-                <div class="col-3 col-sm-3"><strong>Rate</strong></div>
+                <div class="col-5 col-sm-4"><strong>Task</strong></div>
+                <div class="col-2 col-sm-3"><strong>Rate</strong></div>
                 <div class="col-5 col-sm-3 pr-0">
                     <select class="form-control" v-model="c_filter_status">
                         <option v-for="status in task_statuses" :value="status.id">{{ status.name }}</option>
@@ -22,8 +22,8 @@
                         class="row align-items-center swipe-row flex-nowrap mx-0"
                         :class="{opened: tasks_opened[task.id]}"
                     >
-                        <div class="col-4 col-sm-4"><router-link :to="{name: 'project_task_view', params: {project_id: task.project_id, task_id: task.id}}">{{ task.name}}</router-link></div>
-                        <div class="col-3 col-sm-3 text-success">{{ task.rate }}</div>
+                        <div class="col-5 col-sm-4 task-list-item__col-name"><router-link :to="{name: 'project_task_view', params: {project_id: task.project_id, task_id: task.id}}">{{ task.name}}</router-link></div>
+                        <div class="col-2 col-sm-3 text-success">{{ task.rate }}</div>
                         <div class="col-5 col-sm-3 pr-0">
                             <select :value="task.status" :class="statusClass(task.status)" @change="(e) => handleStatusChange(e, task)">
                                 <option v-for="status in statuses" :value="status.id" :class="status.class">{{ status.name }}</option>
@@ -161,10 +161,17 @@
         margin-top: 1px;
     }
 
+    .task-list-item__col-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     select {
         border-radius: 0;
         outline-style:none;
         box-shadow:none;
         border-color:transparent;
+        background-color: #ffffff;
     }
 </style>
