@@ -9,10 +9,12 @@ require('./bootstrap');
 
 import store from './store/store';
 import VueRouter from 'vue-router'
+import Vue2TouchEvents from 'vue2-touch-events'
 
 window.Vue = require('vue');
 
 Vue.use(VueRouter);
+Vue.use(Vue2TouchEvents);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
