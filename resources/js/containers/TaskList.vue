@@ -179,6 +179,5 @@
         outline-style:none;
         box-shadow:none;
         border-color:transparent;
-        background-color: inherit;
     }
 </style>
