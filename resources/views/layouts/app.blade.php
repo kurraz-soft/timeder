@@ -123,5 +123,10 @@
             @yield('content')
         </main>
     </div>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/js/sw.js');
+    }
+</script>
 </body>
 </html>

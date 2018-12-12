@@ -61,7 +61,3 @@ const app = new Vue({
         }
     }
 });
-
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/js/sw.js');
-}
