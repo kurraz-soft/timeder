@@ -12,7 +12,7 @@
                 <h2>{{ task.name }}</h2>
                 <h4 class="text-success">{{ task.rate }}</h4>
                 <div>
-                    <p>{{ task.description }}</p>
+                    <p class="text-pre">{{ task.description }}</p>
                 </div>
                 <div v-if="task.files.length">
                     <strong>Attachments</strong>
