@@ -24,6 +24,7 @@ const PRECACHE_URLS = [
   'styles.css',
   '../../styles/main.css',
   'demo.js'*/
+  'css/animate.css',
 ];
 
 // The install handler takes care of precaching the resources we always need.
@@ -61,14 +62,7 @@ self.addEventListener('fetch', event => {
           return cachedResponse;
         }
 
-        return caches.open(RUNTIME).then(cache => {
-          return fetch(event.request).then(response => {
-            // Put a copy of the response in the runtime cache.
-            return cache.put(event.request, response.clone()).then(() => {
-              return response;
-            });
-          });
-        });
+        return fetch(event.request);
       })
     );
   }
