@@ -7,11 +7,29 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="manifest" href="/manifest.json">
 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-title" content="Timeder">
+
+    <link rel="apple-touch-icon" href="/images/icons/icon-512x512.png" >
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="/images/icons/icon-128x128.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/icon-152x152.png">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <meta name="description" content="Responsive task tracker">
+    <meta property="og:url" content="https://timeder.kurraz-soft.com/" />
+    <meta property="og:image" content="https://timeder.kurraz-soft.com/images/icons/icon-128x128.png" />
+    <meta property="og:image:height" content="128" />
+    <meta property="og:image:width" content="128" />
+    <meta property="og:title" content="Timeder" />
+    <meta property="og:description" content="Responsive task tracker" />
+    <meta property="og:site_name" content="Timeder" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 

@@ -25,6 +25,7 @@ const PRECACHE_URLS = [
   '../../styles/main.css',
   'demo.js'*/
   'css/animate.css',
+  'https://use.fontawesome.com/releases/v5.5.0/css/all.css',
 ];
 
 // The install handler takes care of precaching the resources we always need.
