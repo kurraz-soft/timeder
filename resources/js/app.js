@@ -49,6 +49,8 @@ const app = new Vue({
             const fromDepth = from.path.split('/').length;
             this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
             this.changeProject();
+
+            localStorage.route = to.path;
         }
     },
     async created() {
@@ -61,3 +63,6 @@ const app = new Vue({
         }
     }
 });
+
+if(localStorage.route)
+    app.$router.push(localStorage.route);
