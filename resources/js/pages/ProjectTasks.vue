@@ -3,7 +3,7 @@
         <div v-if="project">
             <h4 class="text-center">{{ project.name }}</h4>
             <div>
-                <router-link :to="link_new_task" class="btn btn-success">New Task</router-link>
+                <router-link :to="link_new_task" class="btn col-12 col-sm-1 btn-success ">New Task</router-link>
             </div>
             <task-list :tasks="tasks" :filter_status="$route.params.filter_status"></task-list>
         </div>

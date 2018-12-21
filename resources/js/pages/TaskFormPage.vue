@@ -66,7 +66,7 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <button type="submit" class="btn btn-primary col-12 col-sm-1">Сохранить</button>
             </form>
         </div>
     </div>
