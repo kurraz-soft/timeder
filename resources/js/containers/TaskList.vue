@@ -14,13 +14,13 @@
                 </div>
                 <div class="control-block"></div>
             </div>
-            <div v-for="task in tasks" class="task-list-item">
+            <div v-for="(task, index) in tasks" class="task-list-item">
                 <div style="width: 100%; overflow: hidden">
                     <div
-                        v-touch:swipe.left="() => handleSwipeLeft(task)"
-                        v-touch:swipe.right="() => handleSwipeRight(task)"
+                        v-touch:swipe.left="() => handleSwipeLeft(index)"
+                        v-touch:swipe.right="() => handleSwipeRight(index)"
                         class="row align-items-center swipe-row flex-nowrap mx-0"
-                        :class="{opened: tasks_opened[task.id]}"
+                        :class="{opened: tasks_opened[index]}"
                     >
                         <div class="col-5 col-sm-5 task-list-item__col-name"><router-link :to="{name: 'project_task_view', params: {project_id: task.project_id, task_id: task.id}}">{{ task.name}}</router-link></div>
                         <div class="col-2 col-sm-2 text-success task-list-item__col-rate px-0">{{ task.rate }}</div>
@@ -72,18 +72,23 @@
             handleStatusChange(e, task) {
                 this.$store.dispatch('changeTaskStatus', {task, status: e.target.value});
             },
-            handleSwipeLeft(task) {
+            handleSwipeLeft(index) {
                 this.tasks_opened = {
                     ...this.tasks_opened,
-                    [task.id]: true,
+                    [index]: true,
                 };
             },
-            handleSwipeRight(task) {
+            handleSwipeRight(index) {
                 this.tasks_opened = {
                     ...this.tasks_opened,
-                    [task.id]: false,
+                    [index]: false,
                 };
             },
+        },
+        watch: {
+            '$route'(to, from) {
+                this.tasks_opened = {};
+            }
         },
         computed: {
             task_statuses() {
