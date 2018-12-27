@@ -9,6 +9,7 @@
             </div>
             <hr>
             <div>
+                <div><p class="text-muted">{{ $helpers.formatDate(task.created_at) }}</p></div>
                 <h2>{{ task.name }}</h2>
                 <h4 class="text-success">{{ task.rate }}</h4>
                 <div>

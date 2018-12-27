@@ -22,7 +22,10 @@
                         class="row align-items-center swipe-row flex-nowrap mx-0"
                         :class="{opened: tasks_opened[index]}"
                     >
-                        <div class="col-5 col-sm-5 task-list-item__col-name"><router-link :to="{name: 'project_task_view', params: {project_id: task.project_id, task_id: task.id}}">{{ task.name}}</router-link></div>
+                        <div class="col-5 col-sm-5 task-list-item__col-name">
+                            <div><small class="text-muted">{{ $helpers.formatDate(task.created_at) }}</small></div>
+                            <router-link :to="{name: 'project_task_view', params: {project_id: task.project_id, task_id: task.id}}">{{ task.name}}</router-link>
+                        </div>
                         <div class="col-2 col-sm-2 text-success task-list-item__col-rate px-0">{{ task.rate }}</div>
                         <div class="col-5 col-sm-3 pr-0">
                             <select :value="task.status" :class="statusClass(task.status)" @change="(e) => handleStatusChange(e, task)">
@@ -30,17 +33,18 @@
                             </select>
                         </div>
                         <div class="control-block col-sm-2">
-                            <div class="d-flex" style="height: 100%">
-                                <div class="col-6 bg-primary d-flex align-items-center justify-content-center">
-                                    <div style="height: 23px">
-                                        <router-link class="text-white" :to="`/project/${task.project_id}/task/${task.id}`"><i class="fas fa-pencil-alt"></i></router-link>
-                                    </div>
-                                </div>
-                                <div class="col-6 bg-danger d-flex align-items-center justify-content-center">
-                                    <div style="height: 23px">
-                                        <a class="text-white" href="#" @click="(e) => handleDelete(e, task.id)"><i class="fas fa-trash-alt"></i></a>
-                                    </div>
-                                </div>
+                            <div class="row h-100">
+                                <router-link class="text-white bg-primary col-6 d-flex align-items-center justify-content-center"
+                                             :to="`/project/${task.project_id}/task/${task.id}`"
+                                >
+                                    <i class="fas fa-pencil-alt"></i>
+                                </router-link>
+                                <a class="text-white col-6 bg-danger d-flex align-items-center justify-content-center"
+                                   href="#"
+                                   @click="(e) => handleDelete(e, task.id)"
+                                >
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -149,9 +153,10 @@
     }
 
     .control-block {
-        height: 37px;
-        padding: 0 0 0 1px;
+        /*height: 37px;*/
+        /*padding: 0;*/
         margin: 0;
+        align-self: stretch;
     }
 
     @media screen and (max-width: 720px){
