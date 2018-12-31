@@ -3,7 +3,7 @@
         <div v-if="loading">
             Loading...
         </div>
-        <div v-if="!loading">
+        <div v-else>
             <div>
                 <router-link :to="back_url" class="btn btn-outline-secondary px-4" role="button"><i class="fas fa-long-arrow-alt-left"></i></router-link>
             </div>
