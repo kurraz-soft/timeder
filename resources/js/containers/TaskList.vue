@@ -137,10 +137,10 @@
                 this.tasks.forEach(item => {
                     if(!item.rate) return;
 
-                    let found = item.rate.match(/(\d+)грн/);
+                    let found = item.rate.match(/(.+)грн/);
                     if(found)
                         sum_hrn += parseInt(found[1]);
-                    found = item.rate.match(/(\d+)\$/);
+                    found = item.rate.match(/(.+)\$/);
                     if(found)
                         sum_d += parseInt(found[1]);
                 });
