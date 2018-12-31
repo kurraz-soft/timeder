@@ -128,6 +128,7 @@
                 e.preventDefault();
 
                 await this.$store.dispatch('newTask', new FormData(e.target));
+                this.$router.push(this.back_url);
             },
             clearData() {
                 this.$store.commit('clearTaskFormData', this.$route.params.project_id);
