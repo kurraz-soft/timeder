@@ -26,7 +26,7 @@
                         :class="{opened: tasks_opened[index]}"
                     >
                         <div class="col-5 col-sm-5 task-list-item__col-name">
-                            <div><small class="text-muted" :title="task.created_at">{{ $helpers.formatDate(task.created_at) }}</small></div>
+                            <div><small class="text-muted" :title="task.created_at">{{ $helpers.formatDate(task.created_at) }} (#{{ task.id }})</small></div>
                             <router-link :to="{name: 'project_task_view', params: {project_id: task.project_id, task_id: task.id}}">{{ task.name}}</router-link>
                         </div>
                         <div class="col-2 col-sm-2 text-success task-list-item__col-rate px-0">{{ task.rate }}</div>
