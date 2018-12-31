@@ -4,6 +4,9 @@
             <i class="fas fa-sync-alt"></i>
         </div>
         <div>
+            <div class="task-list-item d-flex p-2">
+                <div class="col-12 text-center"><strong>Σ = {{ sum }}</strong></div>
+            </div>
             <div class="task-list-item row flex-nowrap mx-0 align-items-center" style="overflow: hidden">
                 <div class="col-5 col-sm-5"><strong>Task</strong></div>
                 <div class="col-2 col-sm-2 px-0"><strong>Rate</strong></div>
@@ -126,6 +129,29 @@
             loading() {
                 return this.$store.getters.getIsLoading;
             },
+            sum() {
+
+                let sum_hrn = 0;
+                let sum_d = 0;
+
+                this.tasks.forEach(item => {
+                    if(!item.rate) return;
+
+                    let found = item.rate.match(/(\d+)грн/);
+                    if(found)
+                        sum_hrn += parseInt(found[1]);
+                    found = item.rate.match(/(\d+)\$/);
+                    if(found)
+                        sum_d += parseInt(found[1]);
+                });
+
+                let result = `${sum_hrn} грн`;
+
+                if(sum_d > 0)
+                    result += `, $${sum_d}`;
+
+                return result;
+            }
         }
     }
 </script>
