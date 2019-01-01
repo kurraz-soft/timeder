@@ -40,6 +40,7 @@
             projects: {
                 list: '{{ route('projects.index') }}',
                 store: '{{ route('projects.store') }}',
+                update: '{{ route('projects.update', '#id#') }}',
                 detail: '{{ route('projects.show', '#id#') }}',
             },
             tasks: {

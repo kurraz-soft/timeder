@@ -4,7 +4,7 @@
             <a href="#"><slot></slot></a>
         </div>
         <div v-bind:class="{'d-none': is_btn_mode}" class="input-group" :style="{width: currentInputWidth + 'px'}">
-            <input class="form-control" :name="name" :value="value" v-bind:change="handleInputChange" v-bind:input="handleInputInput" />
+            <input autocomplete="off" class="form-control" :name="name" :value="value" v-bind:change="handleInputChange" />
             <div class="input-group-append">
                 <span class="input-group-text"><a href="#" v-on:click="handleSwitchModeClick">[X]</a></span>
             </div>
@@ -18,7 +18,6 @@
         data() {
             return {
                 is_btn_mode: true,
-                value: '',
             }
         },
         computed: {
@@ -35,18 +34,13 @@
             switchMode() {
                 this.is_btn_mode = !this.is_btn_mode;
             },
-            clear() {
-                this.value = '';
-            },
             handleInputChange: function (e) {
                 this.onChange(e);
             },
-            handleInputInput: function (e) {
-
-            }
         },
         props: {
             "name": String,
+            "value": String,
             "width": {
                 default: 200,
                 type: Number,

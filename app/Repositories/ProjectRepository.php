@@ -37,6 +37,15 @@ class ProjectRepository
         return $p;
     }
 
+    public function update($id,$name)
+    {
+        $p = Project::find($id);
+        $p->name = $name;
+        $p->save();
+
+        return $p;
+    }
+
     /**
      * @param $id
      * @return Project

@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 import {
     apiDeleteFile,
-    apiDeleteTask, apiLoadTask, apiProjectDetail, apiProjectList, apiProjectNew, apiTaskNew,
+    apiDeleteTask, apiLoadTask, apiProjectDetail, apiProjectList, apiProjectNew, apiProjectUpdate, apiTaskNew,
     apiUserList
 } from '../api/api';
 
@@ -79,6 +79,18 @@ export default new Vuex.Store({
             context.commit('incLoadingCnt');
             try {
                 await apiProjectNew(data);
+                context.dispatch('loadProjectList');
+                context.commit('decLoadingCnt');
+            }catch (e)
+            {
+                alert(e);
+            }
+        },
+        async updProject(context, payload)
+        {
+            context.commit('incLoadingCnt');
+            try {
+                await apiProjectUpdate(payload.id, payload.data);
                 context.dispatch('loadProjectList');
                 context.commit('decLoadingCnt');
             }catch (e)

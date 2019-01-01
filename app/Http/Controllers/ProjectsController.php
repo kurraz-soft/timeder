@@ -76,11 +76,19 @@ class ProjectsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     * @param ProjectRepository $repo
+     * @throws ValidationException
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, ProjectRepository $repo)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+        ]);
+
+        $repo->update($id, $request->post('name'));
+
+        return response('OK');
     }
 
     /**

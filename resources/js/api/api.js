@@ -12,6 +12,10 @@ export async function apiProjectNew(data) {
     return (await axios.post(API_URLS.projects.store, data)).data;
 }
 
+export async function apiProjectUpdate(id, data) {
+    return (await axios.post(API_URLS.projects.update.replace('#id#', id), data, { headers: {'Content-Type': 'multipart/form-data' }})).data;
+}
+
 export async function apiTaskNew(data) {
     return (await axios.post(API_URLS.tasks.store, data)).data;
 }
