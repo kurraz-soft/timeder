@@ -35,6 +35,7 @@ Vue.component('project-select', require('./containers/ProjectSelect'));
 Vue.component('project-new-form', require('./containers/ProjectNewForm'));
 
 import routes from './routes';
+import moment from 'moment';
 
 const router = new VueRouter({
     routes,
@@ -61,7 +62,7 @@ const app = new Vue({
         }
     },
     async created() {
-        this.changeMonth();
+        this.changeMonth(moment().format('MM-YYYY'));
         await this.$store.dispatch('loadProjectList');
         this.changeProject();
     },
@@ -69,8 +70,10 @@ const app = new Vue({
         changeProject() {
             this.$store.dispatch('changeProject', parseInt(this.$route.params.project_id));
         },
-        changeMonth() {
-            this.$store.dispatch('changeMonth', this.$route.params.date);
+        changeMonth(month) {
+            if(!month)
+                month = this.$route.params.date;
+            this.$store.dispatch('changeMonth', month);
         }
     }
 });
