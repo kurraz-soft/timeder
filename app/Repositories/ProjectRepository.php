@@ -33,17 +33,33 @@ class ProjectRepository
     {
         $projects = Project::all()->toArray();
 
-        $month = explode('-',$month);
+        if(!$projects) return [];
 
-        foreach ($projects as &$project)
+        $month = explode('-',$month);
+        $date = new \DateTime();
+        $date->setDate($month[1],$month[0],1);
+
+        $project_ids = [];
+        foreach ($projects as $project)
         {
-            $date = new \DateTime();
-            $date->setDate($month[1],$month[0],1);
-            $project['tasks'] = Task::with('files')
+            $project_ids[] = $project['id'];
+        }
+
+        $tasks = Task::with('files')
+                ->whereIn('project_id', $project_ids)
                 ->whereMonth('created_at', $date)
                 ->orderByDesc('created_at')
                 ->get()
-                ->toArray();
+                ->mapToDictionary(function($task) {
+                    return [$task['project_id'] => $task];
+                });
+
+        foreach ($projects as &$project)
+        {
+            if(!empty($tasks[$project['id']]))
+                $project['tasks'] = $tasks[$project['id']];
+            else
+                $project['tasks'] = [];
         }
 
         return $projects;

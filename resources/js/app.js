@@ -62,7 +62,7 @@ const app = new Vue({
         }
     },
     async created() {
-        this.changeMonth(moment().format('MM-YYYY'));
+        this.changeMonth();
         await this.$store.dispatch('loadProjectList');
         this.changeProject();
     },
@@ -70,9 +70,10 @@ const app = new Vue({
         changeProject() {
             this.$store.dispatch('changeProject', parseInt(this.$route.params.project_id));
         },
-        changeMonth(month) {
+        changeMonth() {
+            let month = this.$route.params.date;
             if(!month)
-                month = this.$route.params.date;
+                month = moment().format('MM-YYYY');
             this.$store.dispatch('changeMonth', month);
         }
     }
