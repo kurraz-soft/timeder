@@ -1,8 +1,5 @@
 <template>
     <div>
-        <!--<select @change="handleChange" :value="value">
-            <option v-for="variant in variants" :value="variant.value">{{ variant.text }}</option>
-        </select>-->
         <vue-monthly-picker @selected="handleChange" inputClass="label" dateFormat="MM-YYYY" :value="momentValue"></vue-monthly-picker>
     </div>
 </template>
