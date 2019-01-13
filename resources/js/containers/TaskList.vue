@@ -5,7 +5,12 @@
         </div>
         <div>
             <div class="task-list-item d-flex p-2">
-                <div class="col-12 text-center"><strong>Σ = {{ sum }}</strong></div>
+                <div class="col-6 text-center d-flex justify-content-center">
+                    <div style="max-width: 200px">
+                        <month-select :value="$store.getters.getCurrentMonth" :onChange="handleChangeMonth"></month-select>
+                    </div>
+                </div>
+                <div class="col-6 text-center"><strong>Σ = {{ sum }}</strong></div>
             </div>
             <div class="task-list-item row flex-nowrap mx-0 align-items-center" style="overflow: hidden">
                 <div class="col-5 col-sm-5"><strong>Task</strong></div>
@@ -38,7 +43,7 @@
                         <div class="control-block col-sm-2">
                             <div class="row h-100">
                                 <router-link class="text-white bg-primary col-6 d-flex align-items-center justify-content-center"
-                                             :to="`/project/${task.project_id}/task/${task.id}`"
+                                             :to="{name: 'project_task', params: {project_id: task.project_id,task_id: task.id}}"
                                 >
                                     <i class="fas fa-pencil-alt"></i>
                                 </router-link>
@@ -58,7 +63,10 @@
 </template>
 
 <script>
+    import MonthSelect from "../components/MonthSelect";
+
     export default {
+        components: {MonthSelect},
         name: "task-list",
         data() {
             return {
@@ -91,6 +99,16 @@
                     [index]: false,
                 };
             },
+            handleChangeMonth(month) {
+                this.$router.push({
+                    name: 'project',
+                    params: {
+                        project_id: this.$route.params.project_id,
+                        filter_status: this.$route.params.filter_status,
+                        date: month,
+                    }
+                });
+            }
         },
         watch: {
             '$route'(to, from) {
@@ -166,7 +184,7 @@
     .spinner {
         position: absolute;
         right: 3px;
-        top: -33px;
+        top: -25px;
         animation: spin infinite 4000ms;
     }
 

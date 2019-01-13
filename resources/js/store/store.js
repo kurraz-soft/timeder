@@ -3,8 +3,7 @@ import Vuex from 'vuex';
 
 import {
     apiDeleteFile,
-    apiDeleteTask, apiLoadTask, apiProjectDetail, apiProjectList, apiProjectNew, apiProjectUpdate, apiTaskNew,
-    apiUserList
+    apiDeleteTask, apiProjectList, apiProjectNew, apiProjectUpdate, apiTaskNew,
 } from '../api/api';
 
 Vue.use(Vuex);
@@ -15,6 +14,7 @@ export default new Vuex.Store({
         current_project_id: null,
         loadingCnt: 0,
         taskFormData: {},
+        current_month: '',
     },
     getters: {
         getTasks: (state) => {
@@ -59,6 +59,7 @@ export default new Vuex.Store({
             ].concat(TASK_STATUSES);
         },
         defaultFilterStatusId: () => 'all_but_closed',
+        getCurrentMonth: (state) => state.current_month,
     },
     actions: {
 
@@ -70,7 +71,7 @@ export default new Vuex.Store({
 
         async loadProjectList(context) {
             context.commit('incLoadingCnt');
-            context.commit('loadProjects', await apiProjectList());
+            context.commit('loadProjects', await apiProjectList(context.state.current_month));
             context.commit('decLoadingCnt');
         },
 
@@ -132,6 +133,15 @@ export default new Vuex.Store({
         async deleteFile(context, id) {
             await apiDeleteFile(id);
             context.commit('loadProjects', await apiProjectList());
+        },
+
+        changeMonth(context, month) {
+            if(month !== context.state.current_month)
+            {
+                context.commit('changeMonth', month);
+                context.dispatch('loadProjectList');
+            }
+
         }
     },
     mutations: {
@@ -163,5 +173,8 @@ export default new Vuex.Store({
                 status: TASK_STATUSES[0].id,
             };
         },
+        changeMonth(state, month) {
+            state.current_month = month;
+        }
     },
 });

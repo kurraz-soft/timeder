@@ -31,7 +31,7 @@
             handleChange(){
                 //this.$store.dispatch('changeProject', this.__value);
                 if(this.__value)
-                    this.$router.push({name: 'project', params: { project_id:  this.__value, filter_status: this.$store.getters.defaultFilterStatusId}});
+                    this.$router.push({name: 'project', params: { project_id:  this.__value, filter_status: this.$store.getters.defaultFilterStatusId, date: this.$store.state.date.format('MM-YYYY')}});
                 else
                     this.$router.push('/');
 

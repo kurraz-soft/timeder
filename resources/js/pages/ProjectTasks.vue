@@ -8,7 +8,7 @@
                 </form>
             </div>
             <div>
-                <router-link :to="link_new_task" class="btn col-12 col-sm-1 btn-success ">New Task</router-link>
+                <router-link :to="{name: 'project_task', params: {task_id: 'new', date: $helpers.getCurrentMonth()}}" class="btn col-12 col-sm-1 btn-success ">New Task</router-link>
             </div>
             <task-list :tasks="tasks" :filter_status="$route.params.filter_status"></task-list>
         </div>
@@ -35,9 +35,6 @@
                             return item.status === parseInt(this.$route.params.filter_status);
                     }
                 });
-            },
-            link_new_task() {
-                return this.project ? `/project/${this.project.id}/task/new` : '/task/new';
             },
         },
         methods: {

@@ -12,12 +12,16 @@ class ProjectsController extends Controller
      * Display a listing of the resource.
      *
      * @param ProjectRepository $repo
+     * @param Request $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ProjectRepository $repo)
+    public function index(ProjectRepository $repo, Request $request)
     {
-        return response()->json($repo->getAll());
+        if($request->get('month'))
+            return response()->json($repo->getByMonth($request->get('month')));
+        else
+            return response()->json($repo->getAll());
     }
 
     /**

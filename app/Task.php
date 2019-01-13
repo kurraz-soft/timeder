@@ -17,6 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $project_id
  * @property string $rate
  *
+ * @property string $created_at
+ * @property string $updated_at
+ *
  * @property string $status_label
  * @property File[] $files
  */

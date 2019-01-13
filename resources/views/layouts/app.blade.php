@@ -38,7 +38,7 @@
     <script>
         var API_URLS = {
             projects: {
-                list: '{{ route('projects.index') }}',
+                list: '{{ route('projects.index', ['month'=> '_month_']) }}',
                 store: '{{ route('projects.store') }}',
                 update: '{{ route('projects.update', '#id#') }}',
                 detail: '{{ route('projects.show', '#id#') }}',

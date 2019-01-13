@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export async function apiProjectList() {
-    return (await axios.get(API_URLS.projects.list)).data;
+export async function apiProjectList(month) {
+    return (await axios.get(API_URLS.projects.list.replace('_month_',month))).data;
 }
 
 export async function apiProjectDetail(id) {

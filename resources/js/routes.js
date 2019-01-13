@@ -13,17 +13,17 @@ export default [
         component: TaskFormPage,
     },
     {
-        path: '/project/:project_id/s=:filter_status',
+        path: '/:date/project/:project_id/s=:filter_status',
         name: 'project',
         component: ProjectTasks,
     },
     {
-        path: '/project/:project_id/task/:task_id',
+        path: '/:date/project/:project_id/task/:task_id',
         name: 'project_task',
         component: TaskFormPage,
     },
     {
-        path: '/project/:project_id/task_view/:task_id',
+        path: '/:date/project/:project_id/task_view/:task_id',
         name: 'project_task_view',
         component: TaskViewPage,
     },

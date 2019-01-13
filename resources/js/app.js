@@ -54,18 +54,23 @@ const app = new Vue({
             const toDepth = to.path.split('/').length;
             const fromDepth = from.path.split('/').length;
             this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
+            this.changeMonth();
             this.changeProject();
 
             localStorage.route = to.path;
         }
     },
     async created() {
+        this.changeMonth();
         await this.$store.dispatch('loadProjectList');
         this.changeProject();
     },
     methods: {
         changeProject() {
             this.$store.dispatch('changeProject', parseInt(this.$route.params.project_id));
+        },
+        changeMonth() {
+            this.$store.dispatch('changeMonth', this.$route.params.date);
         }
     }
 });
