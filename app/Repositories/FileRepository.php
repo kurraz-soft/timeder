@@ -9,6 +9,7 @@ namespace App\Repositories;
 
 use App\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\File\Exception\UploadException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -58,9 +59,14 @@ class FileRepository
     {
         $file = $this->getByName($name);
 
-        $content = Storage::get('upload/'.$file->name);
+        $exp = explode('.',$file->orig_name);
 
-        static::forceDownload($file->orig_name, $content);
+        $n = reset($exp);
+        $ext = end($exp);
+
+        return Storage::download('upload/'.$file->name, Str::slug($n).'.'.$ext);
+
+        //static::forceDownload($file->orig_name, $content);
     }
 
     /**

@@ -10,9 +10,7 @@ class FileController extends Controller
 {
     public function index($name, FileRepository $repo)
     {
-        $repo->download($name);
-
-        return response();
+        return $repo->download($name);
     }
 
     public function destroy($id, FileRepository $repo)
