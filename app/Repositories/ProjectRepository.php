@@ -48,6 +48,7 @@ class ProjectRepository
         $tasks = Task::with('files')
                 ->whereIn('project_id', $project_ids)
                 ->whereMonth('created_at', $date)
+                ->orWhere('status', '!=', Task::STATUS_CLOSED)
                 ->orderByDesc('created_at')
                 ->get()
                 ->mapToDictionary(function($task) {
