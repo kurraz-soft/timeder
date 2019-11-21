@@ -28,6 +28,8 @@
                     {
                         case 'all_but_closed':
                             return item.status !== TASK_STATUS_CLOSED;
+                        case 'approved':
+                            return item.status !== TASK_STATUS_CLOSED && item.status !== TASK_STATUS_ON_HOLD;
                         case 'all':
                             return true;
                             break;

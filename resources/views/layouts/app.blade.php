@@ -59,6 +59,7 @@
         var USER = @json(Auth::user());
         var TASK_STATUSES = @json(\App\Task::statusLabelsList());
         var TASK_STATUS_CLOSED = {{ \App\Task::STATUS_CLOSED }};
+        var TASK_STATUS_ON_HOLD = {{ \App\Task::STATUS_ON_HOLD }};
     </script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     @endauth

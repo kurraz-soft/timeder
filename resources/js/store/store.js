@@ -53,6 +53,10 @@ export default new Vuex.Store({
                     name: 'Незакрытые',
                 },
                 {
+                    id: 'approved',
+                    name: 'Одобренные',
+                },
+                {
                     id: 'all',
                     name: 'Все',
                 },
