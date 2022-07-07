@@ -21,7 +21,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "moment": "^2.23.0",
+        "moment": "^2.29.4",
         "vue-monthly-picker": "^0.2.5",
         "vue-router": "^3.0.1",
         "vue2-touch-events": "^1.1.1",
