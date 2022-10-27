@@ -18,6 +18,9 @@ return [
         'passwords' => 'users',
     ],
 
+    //Deny registration of new users
+    'register_disabled' => true,
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards

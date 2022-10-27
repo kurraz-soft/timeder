@@ -30,6 +30,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        if(config('auth.register_disabled'))
+            dd('registraion disabled');
         $this->middleware('guest');
     }
 
